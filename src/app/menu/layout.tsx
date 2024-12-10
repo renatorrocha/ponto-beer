@@ -8,11 +8,5 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  return (
-    <html lang="pt-BR">
-      <body>
-        <div className="flex min-h-screen w-full">{children}</div>
-      </body>
-    </html>
-  );
+  return <div className="flex min-h-[100vh] w-full">{children}</div>;
 }
