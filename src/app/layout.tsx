@@ -22,7 +22,7 @@ export default function RootLayout({
     >
       <body>
         <TRPCReactProvider>
-          <div className="bg-muted/20 flex min-h-screen w-full">{children}</div>
+          <div className="bg-muted/20 flex min-h-[100vh] w-full">{children}</div>
         </TRPCReactProvider>
       </body>
     </html>
