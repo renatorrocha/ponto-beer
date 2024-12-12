@@ -1,8 +1,8 @@
 import { createUserSchema } from "~/lib/validations";
-import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
+import { createTRPCRouter, protectedProcedure } from "~/server/api/trpc";
 
 export const userRouter = createTRPCRouter({
-  create: publicProcedure
+  create: protectedProcedure
     .input(createUserSchema)
     .mutation(async ({ ctx, input }) => {
       const newUser = await ctx.db.user.create({
@@ -14,7 +14,7 @@ export const userRouter = createTRPCRouter({
 
       return newUser;
     }),
-  getAll: publicProcedure.query(async ({ ctx }) => {
+  getAll: protectedProcedure.query(async ({ ctx }) => {
     const users = await ctx.db.user.findMany();
 
     return users;
