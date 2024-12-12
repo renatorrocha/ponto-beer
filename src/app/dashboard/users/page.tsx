@@ -4,9 +4,11 @@ import { PlusCircle, Users } from "lucide-react";
 import React from "react";
 import { Button } from "~/components/ui/button";
 import { PageHeaderCard } from "../_components/page-header-card";
-import { CreateUserDialog } from '../_components/create-user-dialog';
+import { CreateUserDialog } from "../_components/create-user-dialog";
+import { api } from "~/trpc/react";
 
 export default function UsersPage() {
+  const { data } = api.user.getAll.useQuery();
   const addUserButton = (
     <CreateUserDialog
       trigger={
@@ -29,7 +31,7 @@ export default function UsersPage() {
         action={addUserButton}
         className="shadow-lg"
       >
-        <p>teste</p>
+        {data?.map((user) => <p key={user.id}>{user.name}</p>)}
       </PageHeaderCard>
     </div>
   );
