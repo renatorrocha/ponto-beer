@@ -1,13 +1,7 @@
 "use client";
 
-import { ChefHat, ChevronUp, User2 } from "lucide-react";
+import { ChefHat, LogOutIcon, User2 } from "lucide-react";
 import Link from "next/link";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "~/components/ui/dropdown-menu";
 import {
   Sidebar,
   SidebarContent,
@@ -20,9 +14,22 @@ import {
   SidebarMenuItem,
 } from "~/components/ui/sidebar";
 import SidebarLink from "./sidebar-link";
-import { DASHBOARD_SIDEBAR_LINKS } from "~/lib/constants";
+import { DASHBOARD_SIDEBAR_LINKS, Paths } from "~/lib/constants";
+import { useAuthStore } from "~/lib/store/auth";
+import { Button } from "~/components/ui/button";
+import { deleteCookie } from "cookies-next";
+import { useRouter } from "next/navigation";
 
 export function AppSidebar() {
+  const { user, clearUser } = useAuthStore();
+  const router = useRouter();
+
+  async function handleSignOut() {
+    clearUser();
+    await deleteCookie("jwt");
+    router.push(Paths.login);
+  }
+
   return (
     <Sidebar variant="floating" collapsible="icon">
       <SidebarHeader>
@@ -64,45 +71,25 @@ export function AppSidebar() {
       </SidebarContent>
 
       <SidebarFooter>
-        <SidebarMenu>
-          <SidebarMenuItem>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <SidebarMenuButton tooltip={"Usuário"}>
-                  <User2 />
-                  <ChevronUp className="ml-auto" />
-                </SidebarMenuButton>
-              </DropdownMenuTrigger>
-
-              <DropdownMenuContent
-                side="top"
-                className="w-[--radix-popper-anchor-width]"
-              >
-                <DropdownMenuItem>
-                  <span>Usuários</span>
-                </DropdownMenuItem>
-
-                <DropdownMenuItem asChild>
-                  <span className="cursor-pointer">Sair</span>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </SidebarMenuItem>
-        </SidebarMenu>
+        <div className="rounded-lg bg-sidebar-accent p-4">
+          <div className="mb-2 flex items-center space-x-2">
+            <User2 className="h-5 w-5" />
+            <span className="font-semibold">{user?.name}</span>
+          </div>
+          <div className="mb-4 text-sm text-sidebar-foreground/70">
+            {user?.email}
+          </div>
+          <Button
+            variant="outline"
+            size="sm"
+            className="w-full"
+            onClick={handleSignOut}
+          >
+            <LogOutIcon className="mr-2 h-4 w-4" />
+            Sair
+          </Button>
+        </div>
       </SidebarFooter>
     </Sidebar>
-
-    // <Sidebar>
-    //   <SidebarContent>
-    //     <SidebarGroup>
-    //       <SidebarGroupLabel>Application</SidebarGroupLabel>
-    //       <SidebarGroupContent>
-    //         <SidebarMenu>
-
-    //         </SidebarMenu>
-    //       </SidebarGroupContent>
-    //     </SidebarGroup>
-    //   </SidebarContent>
-    // </Sidebar>
   );
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import { toast } from "sonner";
 import { api } from "~/trpc/react";
 
@@ -15,20 +15,25 @@ import {
 } from "~/components/ui/card";
 import { Button } from "~/components/ui/button";
 import { setCookie } from "cookies-next";
-import type { SearchParamProps } from "~/lib/types";
 import { Paths } from "~/lib/constants";
+import { useAuthStore } from "~/lib/store/auth";
 
 export default function AuthenticatePage({
-  params: { code },
-}: SearchParamProps) {
+  params,
+}: {
+  params: Promise<{ code: string }>;
+}) {
+  const { code } = use(params);
   const router = useRouter();
   const [status, setStatus] = useState<"validating" | "success" | "error">(
     "validating",
   );
+  const { setUser } = useAuthStore();
 
   const { mutate } = api.auth.verifyToken.useMutation({
     onSuccess: async (data) => {
       await setCookie("jwt", data.token);
+      setUser(data.user);
       setStatus("success");
       setTimeout(() => router.push(Paths.Dashboard), 2000);
     },
