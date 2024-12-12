@@ -110,14 +110,14 @@ export const menuData = [
       {
         name: "Jantinha Completa",
         description:
-          "Uma refeição composta por arroz, feijão tropeiro, mandioca, vinagrete e um espetinho de sua escolha.",
+          "Refeição com arroz, feijão tropeiro, mandioca, vinagrete e espetinho à escolha",
         price: 25.0,
         image:
           "https://th.bing.com/th/id/OIP.LuHMiWMQcbkNcytPqI8eWAHaE8?rs=1&pid=ImgDetMain",
       },
       {
         name: "Feijão Tropeiro",
-        description: "Uma generosa porção do nosso feijão tropeiro.",
+        description: "Uma generosa porção do nosso feijão tropeiro",
         price: 8.0,
         image:
           "https://receitarapido.com/wp-content/uploads/2022/05/Feijao-Tropeiro.jpg",
@@ -125,14 +125,14 @@ export const menuData = [
       {
         name: "Arroz",
         description:
-          "Porção de arroz soltinho, fresquinho e feito com todo o cuidado.",
+          "Porção de arroz soltinho, fresquinho e feito com todo o cuidado",
         price: 5.0,
         image:
           "https://th.bing.com/th/id/OIP.1CW0IiOcrAh88XpTVeIcygHaDS?rs=1&pid=ImgDetMain",
       },
       {
         name: "Mandioca",
-        description: "Porção de mandioca crocante por fora e macia por dentro.",
+        description: "Porção de mandioca crocante por fora e macia por dentro",
         price: 3.0,
         image:
           "https://th.bing.com/th/id/OIP.HdCyTIwxuEa0rQnJuf9THwHaDk?rs=1&pid=ImgDetMain",
