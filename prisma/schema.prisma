@@ -10,7 +10,7 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
-model Users {
+model User {
     id        String   @id @default(uuid())
     name      String
     email     String   @unique
@@ -23,12 +23,12 @@ model Users {
 }
 
 model MagicLinkToken {
-    id      String  @id @default(uuid())
-    token   String  @unique
-    usersId String
-    used    Boolean @default(false)
+    id     String  @id @default(uuid())
+    token  String  @unique
+    userId String  @unique
+    used   Boolean @default(false)
 
-    user      Users    @relation(fields: [usersId], references: [id], onDelete: Cascade)
+    user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
     createdAt DateTime @default(now())
 
     @@index([token])
