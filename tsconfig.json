@@ -33,6 +33,7 @@
     ".eslintrc.cjs",
     "next-env.d.ts",
     "**/*.ts",
+    "src/lib/types/*.d.ts",
     "**/*.tsx",
     "**/*.cjs",
     "**/*.js",

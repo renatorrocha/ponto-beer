@@ -2,8 +2,7 @@ import "~/styles/globals.css";
 
 import { GeistSans } from "geist/font/sans";
 import { type Metadata } from "next";
-
-import { TRPCReactProvider } from "~/trpc/react";
+import { Providers } from "~/components/providers";
 
 export const metadata: Metadata = {
   title: "Ponto Beer",
@@ -21,11 +20,11 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body>
-        <TRPCReactProvider>
+        <Providers>
           <div className="flex min-h-[100vh] w-full bg-muted/20">
             {children}
           </div>
-        </TRPCReactProvider>
+        </Providers>
       </body>
     </html>
   );

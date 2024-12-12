@@ -32,7 +32,7 @@ export default function MenuPage() {
 
       <ScrollArea className="h-full">
         <div ref={accordionRef}>
-          <Accordion type="multiple" className="w-full px-8">
+          <Accordion type="multiple" className="w-full px-8" >
             {menuData.map((group, index) => (
               <div key={index} data-accordion-item={index}>
                 <MenuGroup group={group} index={index} />
