@@ -11,7 +11,7 @@ export default function MenuLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <div className="flex w-full flex-grow flex-col">
+    <div className="flex min-h-screen flex-col">
       <main className="flex-grow">{children}</main>
       <Footer />
       <ScrollToTopButton />
