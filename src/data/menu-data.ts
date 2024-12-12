@@ -15,13 +15,6 @@ export const menuData = [
     group: "Espetinhos",
     items: [
       {
-        name: "Espetinho de Carne Serenada",
-        description: "Frango temperado e grelhado no espeto",
-        price: 5.99,
-        image:
-          "https://images.unsplash.com/photo-1632778149955-e80f8ceca2e8?auto=format&fit=crop&w=800&q=80",
-      },
-      {
         name: "Carne serenada",
         description: "Espetinho delicioso de carne serenada",
         price: 12.0,
@@ -31,13 +24,13 @@ export const menuData = [
         name: "Contra filé",
         description: "Espetinho suculento de contra filé",
         price: 12.0,
-        image: "https://via.placeholder.com/150",
+        image: "/contra-file.jpg",
       },
       {
         name: "Picanha montada",
         description: "Espetinho premium de picanha montada",
         price: 12.0,
-        image: "https://via.placeholder.com/150",
+        image: "/picanha-montada.jpg",
       },
       {
         name: "Kafita bovina",
@@ -55,13 +48,13 @@ export const menuData = [
         name: "Frango simples",
         description: "Espetinho clássico de frango simples",
         price: 12.0,
-        image: "https://via.placeholder.com/150",
+        image: "/file-de-frango.jpg",
       },
       {
         name: "Frango com Bacon",
         description: "Espetinho irresistível de frango com bacon",
         price: 12.0,
-        image: "https://via.placeholder.com/150",
+        image: "/frango-com-bacon.jpg",
       },
       {
         name: "Coração",
@@ -73,7 +66,7 @@ export const menuData = [
         name: "Provolone",
         description: "Espetinho saboroso de provolone",
         price: 12.0,
-        image: "https://via.placeholder.com/150",
+        image: "queijo-provolone.jpg",
       },
       {
         name: "Queijo coalho",

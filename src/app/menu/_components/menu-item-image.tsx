@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 interface MenuItemImageProps {
   src: string;
   alt: string;
@@ -8,12 +6,12 @@ interface MenuItemImageProps {
 export function MenuItemImage({ src, alt }: MenuItemImageProps) {
   return (
     <div className="relative h-full w-32 overflow-hidden">
-      <Image
+      <img
         src={src}
         alt={alt}
-        fill
-        className="object-cover"
+        className="h-full w-full object-cover"
         sizes="(max-width: 768px) 25vw, 33vw"
+        loading="lazy"
       />
     </div>
   );
