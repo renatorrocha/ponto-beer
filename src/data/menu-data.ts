@@ -42,7 +42,8 @@ export const menuData = [
         name: "Kafita de frango",
         description: "Espetinho leve de kafita de frango",
         price: 12.0,
-        image: "https://via.placeholder.com/150",
+        image:
+          "https://th.bing.com/th/id/R.0bebb43e893691f9362354fe62eccfdc?rik=EHnbDN%2fFzhsmSg&pid=ImgRaw&r=0",
       },
       {
         name: "Frango simples",
@@ -60,7 +61,8 @@ export const menuData = [
         name: "Coração",
         description: "Espetinho tradicional de coração",
         price: 12.0,
-        image: "https://via.placeholder.com/150",
+        image:
+          "https://th.bing.com/th/id/OIP.zmj9E0lBeQIUw6NCgRJfigHaE7?rs=1&pid=ImgDetMain",
       },
       {
         name: "Provolone",
@@ -72,7 +74,8 @@ export const menuData = [
         name: "Queijo coalho",
         description: "Espetinho típico de queijo coalho",
         price: 12.0,
-        image: "https://via.placeholder.com/150",
+        image:
+          "https://th.bing.com/th/id/OIP.1OyCjmzDT1mhj0hiUOPFogHaE7?rs=1&pid=ImgDetMain",
       },
       {
         name: "Cupim",
@@ -84,7 +87,8 @@ export const menuData = [
         name: "Linguiça de frango",
         description: "Espetinho delicioso de linguiça de frango",
         price: 12.0,
-        image: "https://via.placeholder.com/150",
+        image:
+          "https://th.bing.com/th/id/R.ccc4857cca667bdef6dd54be40b382d9?rik=NSWiKQgaCKhEMQ&riu=http%3a%2f%2fwww.churrascocerto.com.br%2fwp-content%2fuploads%2f2011%2f01%2fespeto-linguica-de-frango.jpg&ehk=Knzh24khWbLKT%2fICCwH16vduHGTzt0hVKAGpPTnxBI4%3d&risl=&pid=ImgRaw&r=0",
       },
       {
         name: "Linguiça suína",
