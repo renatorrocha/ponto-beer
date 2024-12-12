@@ -113,8 +113,7 @@ export const menuData = [
       },
       {
         name: "Feijão Tropeiro",
-        description:
-          "Uma generosa porção do nosso tradicional feijão tropeiro, feito com ingredientes frescos e um toque especial que traz todo o sabor da culinária mineira.",
+        description: "Uma generosa porção do nosso feijão tropeiro.",
         price: 8.0,
         image:
           "https://receitarapido.com/wp-content/uploads/2022/05/Feijao-Tropeiro.jpg",
@@ -122,15 +121,14 @@ export const menuData = [
       {
         name: "Arroz",
         description:
-          "Porção de arroz soltinho, fresquinho e feito com todo o cuidado, o acompanhamento perfeito para qualquer refeição.",
+          "Porção de arroz soltinho, fresquinho e feito com todo o cuidado.",
         price: 5.0,
         image:
           "https://th.bing.com/th/id/OIP.1CW0IiOcrAh88XpTVeIcygHaDS?rs=1&pid=ImgDetMain",
       },
       {
         name: "Mandioca",
-        description:
-          "Porção de mandioca crocante por fora e macia por dentro, temperada na medida certa para proporcionar um sabor incrível.",
+        description: "Porção de mandioca crocante por fora e macia por dentro.",
         price: 3.0,
         image:
           "https://th.bing.com/th/id/OIP.HdCyTIwxuEa0rQnJuf9THwHaDk?rs=1&pid=ImgDetMain",
