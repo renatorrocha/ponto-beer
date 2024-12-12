@@ -2,7 +2,6 @@
 
 import { useForm } from "react-hook-form";
 import { Form } from "../ui/form";
-import { FormFieldTypes } from "~/lib/types/form-field";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import ControlledBtn from "./controlled-btn";
@@ -12,7 +11,7 @@ import {
   type CreateUser,
   type User,
 } from "~/lib/validations";
-import CustomFormField from "./controlled-form-field";
+import CustomFormField, { FormFieldTypes } from "./controlled-form-field";
 
 export default function UserForm({
   mutationFn,

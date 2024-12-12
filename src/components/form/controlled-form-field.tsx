@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+import React from "react";
 import type {
   Control,
   ControllerRenderProps,
@@ -14,7 +14,7 @@ import {
   FormMessage,
 } from "../ui/form";
 import { Input } from "../ui/input";
-import { FormFieldTypes } from "~/lib/types/form-field";
+import { Textarea } from "../ui/textarea";
 import { cn } from "~/lib/utils";
 import {
   Select,
@@ -24,37 +24,49 @@ import {
   SelectValue,
 } from "../ui/select";
 
+export enum FormFieldTypes {
+  input = "input",
+  textarea = "textarea",
+  select = "select",
+  date = "date",
+  skeleton = "skeleton",
+}
+
 interface IFormFieldBase<TFieldValues extends FieldValues> {
   control: Control<TFieldValues>;
-  fieldType: FormFieldTypes;
   name: FieldPath<TFieldValues>;
-  defaultValue?: string | number | Date;
-  className?: string;
   label?: string;
-  placeholder?: string;
   description?: string;
-  type?: string;
+  placeholder?: string;
+  className?: string;
   disabled?: boolean;
-  children?: React.ReactNode;
-  renderSkeleton?: (
-    field: ControllerRenderProps<TFieldValues, FieldPath<TFieldValues>>,
-  ) => React.ReactNode;
+  leftIcon?: React.ReactNode;
 }
 
 interface IFormFieldInput<TFieldValues extends FieldValues>
   extends IFormFieldBase<TFieldValues> {
   fieldType: FormFieldTypes.input;
+  type?: string;
+  defaultValue?: string | number;
+}
+
+interface IFormFieldTextarea<TFieldValues extends FieldValues>
+  extends IFormFieldBase<TFieldValues> {
+  fieldType: FormFieldTypes.textarea;
+  defaultValue?: string;
 }
 
 interface IFormFieldSelect<TFieldValues extends FieldValues>
   extends IFormFieldBase<TFieldValues> {
   fieldType: FormFieldTypes.select;
   options: { value: string; label: string }[];
+  defaultValue?: string;
 }
 
 interface IFormFieldDate<TFieldValues extends FieldValues>
   extends IFormFieldBase<TFieldValues> {
   fieldType: FormFieldTypes.date;
+  defaultValue?: Date;
 }
 
 interface IFormFieldSkeleton<TFieldValues extends FieldValues>
@@ -67,6 +79,7 @@ interface IFormFieldSkeleton<TFieldValues extends FieldValues>
 
 type IFormField<TFieldValues extends FieldValues> =
   | IFormFieldInput<TFieldValues>
+  | IFormFieldTextarea<TFieldValues>
   | IFormFieldSelect<TFieldValues>
   | IFormFieldDate<TFieldValues>
   | IFormFieldSkeleton<TFieldValues>;
@@ -78,16 +91,45 @@ function RenderField<TFieldValues extends FieldValues>({
   field: ControllerRenderProps<TFieldValues, FieldPath<TFieldValues>>;
   props: IFormField<TFieldValues>;
 }) {
+  const { leftIcon } = props;
+
   switch (props.fieldType) {
     case FormFieldTypes.input:
       return (
         <FormControl>
-          <Input
-            {...field}
-            defaultValue={props.defaultValue as string}
-            placeholder={props.placeholder}
-            type={props.type}
-          />
+          <div className="relative">
+            {leftIcon && (
+              <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                {leftIcon}
+              </div>
+            )}
+            <Input
+              {...field}
+              type={props.type}
+              placeholder={props.placeholder}
+              className={cn(leftIcon && "pl-10")}
+              disabled={props.disabled}
+            />
+          </div>
+        </FormControl>
+      );
+
+    case FormFieldTypes.textarea:
+      return (
+        <FormControl>
+          <div className="relative">
+            {leftIcon && (
+              <div className="pointer-events-none absolute left-3 top-3">
+                {leftIcon}
+              </div>
+            )}
+            <Textarea
+              {...field}
+              placeholder={props.placeholder}
+              className={cn(leftIcon && "pl-10")}
+              disabled={props.disabled}
+            />
+          </div>
         </FormControl>
       );
 
@@ -96,10 +138,11 @@ function RenderField<TFieldValues extends FieldValues>({
         <FormControl>
           <Select
             onValueChange={field.onChange}
-            defaultValue={(field.value ?? props.defaultValue) as string}
+            defaultValue={field.value as string}
             disabled={props.disabled}
           >
-            <SelectTrigger>
+            <SelectTrigger className={cn(leftIcon && "pl-10")}>
+              {leftIcon && <span className="absolute left-3">{leftIcon}</span>}
               <SelectValue placeholder={props.placeholder} />
             </SelectTrigger>
             <SelectContent>
@@ -113,10 +156,15 @@ function RenderField<TFieldValues extends FieldValues>({
         </FormControl>
       );
 
+    case FormFieldTypes.date:
+      // Implement date picker here
+      return null;
+
     case FormFieldTypes.skeleton:
-      return props.renderSkeleton ? props.renderSkeleton(field) : null;
+      return props.renderSkeleton(field);
+
     default:
-      break;
+      return null;
   }
 }
 
@@ -132,10 +180,8 @@ export default function CustomFormField<TFieldValues extends FieldValues>(
       render={({ field }) => (
         <FormItem className={cn("flex-1", className)}>
           {label && <FormLabel>{label}</FormLabel>}
-          <RenderField key={name} field={field} props={props} />
-
+          <RenderField field={field} props={props} />
           {description && <FormDescription>{description}</FormDescription>}
-
           <FormMessage className="text-red-400" />
         </FormItem>
       )}

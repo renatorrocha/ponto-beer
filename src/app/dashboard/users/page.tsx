@@ -4,7 +4,7 @@ import { PlusCircle, Users } from "lucide-react";
 import React from "react";
 import { Button } from "~/components/ui/button";
 import { PageHeaderCard } from "../_components/page-header-card";
-import { CreateUserDialog } from "../_components/create-user-dialog";
+import { CreateUserDialog } from "../../../components/dialogs/create-user";
 import { api } from "~/trpc/react";
 
 export default function UsersPage() {
@@ -15,7 +15,7 @@ export default function UsersPage() {
         <Button size="default" className="gap-2">
           <PlusCircle className="h-4 w-4" />
           <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
-            Add User
+            Adicionar Usuário
           </span>
         </Button>
       }
