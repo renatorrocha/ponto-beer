@@ -23,10 +23,7 @@ export default function MenuPage() {
   };
   return (
     <div className="flex-1">
-      <HeroBanner
-        title="Ponto Beer"
-        backgroundImage="https://images.unsplash.com/photo-1620219365994-f443a86ea626?q=80&w=1742&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-      />
+      <HeroBanner title="Ponto Beer" backgroundImage="/ponto-beer-banner.png" />
 
       <MenuNavigation groups={menuData} onNavigate={scrollToSection} />
 
