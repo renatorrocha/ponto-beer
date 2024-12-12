@@ -5,3 +5,8 @@ export interface SidebarLink {
   label: string;
   icon: LucideIcon;
 }
+
+declare type SearchParamProps = {
+  params: Record<string, string>;
+  searchParams: Record<string, string | string[]>;
+};
