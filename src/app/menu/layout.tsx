@@ -1,5 +1,6 @@
 import { type Metadata } from "next";
 import { ScrollToTopButton } from "~/components/ui/scroll-to-top-button";
+import Footer from "./_components/footer";
 
 export const metadata: Metadata = {
   title: "Ponto Beer - Menu",
@@ -10,8 +11,9 @@ export default function MenuLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <div className="container mx-auto flex-1">
-      {children}
+    <div className="flex w-full flex-grow flex-col">
+      <main className="flex-grow">{children}</main>
+      <Footer />
       <ScrollToTopButton />
     </div>
   );
