@@ -1,10 +1,11 @@
 import { TRPCError } from "@trpc/server";
 import { randomUUID } from "crypto";
 import { env } from "~/env";
-import { createUserSchema, userSchema } from "~/lib/validations";
+import { userSchema } from "~/lib/validations";
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
+import { resend } from "../../resend";
 
-export const userRouter = createTRPCRouter({
+export const AuthRouter = createTRPCRouter({
   login: publicProcedure
     .input(userSchema.pick({ email: true }))
     .mutation(async ({ ctx, input }) => {
@@ -30,7 +31,24 @@ export const userRouter = createTRPCRouter({
         },
       });
 
-      const MagicLink = `${env.NEXT_PUBLIC_BASE_URL}/auth/verify/${generatedToken}`;
+      const magicLink = `${env.NEXT_PUBLIC_BASE_URL}/auth/verify/${generatedToken}`;
+
+      const sendEmail = await resend.emails.send({
+        from: "Ponto-Beer <Ponto-Beer@renatodev.com>",
+        to: [input.email],
+        subject: "Link de Autentificação",
+        html: `${magicLink}`,
+      });
+
+      if (sendEmail.error) {
+        console.log(sendEmail.error);
+        throw new TRPCError({
+          code: "INTERNAL_SERVER_ERROR",
+          message: "Não foi possível enviar o email.",
+        });
+      }
+
+      return;
     }),
 
   // verifyToken: publicProcedure
