@@ -5,7 +5,7 @@ export const createItemSchema = z.object({
   description: z
     .string()
     .min(10, "A descrição deve ter pelo menos 10 caracteres."),
-  price: z.number().min(0, "O preço deve ser um número positivo."),
+  price: z.coerce.number().min(0, "O preço deve ser um número positivo."),
   image: z.string().url("Deve ser uma URL válida para a imagem."),
 });
 

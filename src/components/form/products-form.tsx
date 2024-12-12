@@ -96,6 +96,7 @@ export default function ProductForm({
                       control={form.control}
                       name={`items.${index}.price`}
                       label="Preço do Item"
+                      type="number"
                       placeholder="0.00"
                       leftIcon={
                         <DollarSign className="h-4 w-4 text-muted-foreground" />
