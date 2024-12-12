@@ -1,28 +1,25 @@
 "use client";
 
 import { PlusCircle, Users } from "lucide-react";
-import Link from "next/link";
 import React from "react";
-import { buttonVariants } from "~/components/ui/button";
-import { Paths } from "~/lib/constants";
+import { Button } from "~/components/ui/button";
 import { PageHeaderCard } from "../_components/page-header-card";
+import { CreateUserDialog } from '../_components/create-user-dialog';
 
 export default function UsersPage() {
   const addUserButton = (
-    <Link
-      href={Paths.CreateUser}
-      className={buttonVariants({
-        size: "default",
-        className: "gap-2",
-      })}
-    >
-      <PlusCircle className="h-4 w-4" />
-      <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
-        Adicionar Usuário
-      </span>
-    </Link>
+    <CreateUserDialog
+      trigger={
+        <Button size="default" className="gap-2">
+          <PlusCircle className="h-4 w-4" />
+          <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
+            Add User
+          </span>
+        </Button>
+      }
+    />
   );
-  
+
   return (
     <div className="flex-1">
       <PageHeaderCard
