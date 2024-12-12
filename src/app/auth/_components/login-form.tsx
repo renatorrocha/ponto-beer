@@ -2,12 +2,13 @@
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { FormFieldTypes } from "~/lib/types/form-field";
 import { Form } from "~/components/ui/form";
 import { api } from "~/trpc/react";
 import { toast } from "sonner";
 import { type MagicLinkInput, magicLinkSchema } from "~/lib/validations";
-import CustomFormField from "~/components/form/controlled-form-field";
+import CustomFormField, {
+  FormFieldTypes,
+} from "~/components/form/controlled-form-field";
 import ControlledBtn from "~/components/form/controlled-btn";
 
 export default function SignInForm() {

@@ -1,15 +1,15 @@
 import { Button } from "~/components/ui/button";
-import type { MenuGroup } from "~/data/menu-data";
+import type { Group } from "~/lib/validations";
 
 interface MenuNavigationProps {
-  groups: MenuGroup[];
+  groups: Group[];
   onNavigate: (index: number) => void;
 }
 
 export function MenuNavigation({ groups, onNavigate }: MenuNavigationProps) {
   return (
     <div className="sticky top-0 z-20 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <nav className="scrollbar-none flex gap-2 overflow-x-auto px-8 py-4 justify-evenly">
+      <nav className="scrollbar-none flex justify-evenly gap-2 overflow-x-auto px-8 py-4">
         {groups.map((group, index) => (
           <Button
             key={index}
@@ -17,7 +17,7 @@ export function MenuNavigation({ groups, onNavigate }: MenuNavigationProps) {
             className="whitespace-nowrap"
             onClick={() => onNavigate(index)}
           >
-            {group.group}
+            {group.name}
           </Button>
         ))}
       </nav>

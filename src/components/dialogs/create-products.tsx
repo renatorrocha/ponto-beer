@@ -21,15 +21,13 @@ export function CreateProductDialog({ trigger }: CreateProductDialogProps) {
   const [open, setOpen] = useState(false);
   const utils = api.useUtils();
 
-  // const { mutate, isPending } = api.user.create.useMutation({
-  //   onSuccess: async () => {
-  //     setOpen(false);
-  //     toast.success("Usuário Criado !");
-  //     await utils.user.getAll.invalidate();
-  //   },
-  // });
-
-  const isPending = false;
+  const { mutate, isPending } = api.group.create.useMutation({
+    onSuccess: async () => {
+      setOpen(false);
+      toast.success("Produto Criado !");
+      await utils.group.getAll.invalidate();
+    },
+  });
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -39,7 +37,7 @@ export function CreateProductDialog({ trigger }: CreateProductDialogProps) {
           <DialogTitle>Criar novo usuário</DialogTitle>
         </DialogHeader>
         <ProductForm
-          mutationFn={(data) => console.log(data)}
+          mutationFn={(data) => mutate(data)}
           isLoading={isPending}
         />
       </DialogContent>

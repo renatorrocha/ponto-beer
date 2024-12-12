@@ -3,11 +3,11 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "~/components/ui/accordion";
-import type { MenuGroup as MenuGroupType } from "~/data/menu-data";
 import { MenuItemCard } from "./menu-item-card";
+import type { Group } from "~/lib/validations";
 
 interface MenuGroupProps {
-  group: MenuGroupType;
+  group: Group;
   index: number;
 }
 
@@ -15,7 +15,7 @@ export function MenuGroup({ group, index }: MenuGroupProps) {
   return (
     <AccordionItem value={`item-${index}`}>
       <AccordionTrigger>
-        <div>{group.group}</div>
+        <div>{group.name}</div>
       </AccordionTrigger>
       <AccordionContent>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">

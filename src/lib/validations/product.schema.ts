@@ -17,9 +17,7 @@ export type Item = z.infer<typeof itemSchema>;
 export type CreateItem = z.infer<typeof createItemSchema>;
 
 export const createGroupSchema = z.object({
-  groupName: z
-    .string()
-    .min(2, "O nome do grupo deve ter pelo menos 2 caracteres."),
+  name: z.string().min(2, "O nome do grupo deve ter pelo menos 2 caracteres."),
   items: z
     .array(createItemSchema)
     .min(1, "Adicione pelo menos um item ao grupo."),

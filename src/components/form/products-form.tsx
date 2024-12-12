@@ -31,7 +31,7 @@ export default function ProductForm({
   const form = useForm<Group | CreateGroup>({
     resolver: zodResolver(isEditing ? groupSchema : createGroupSchema),
     defaultValues: {
-      groupName: "",
+      name: "",
       items: [{ name: "", description: "", price: 0, image: "" }],
       ...(isEditing && { id: group?.id }),
     },
@@ -43,8 +43,7 @@ export default function ProductForm({
   });
 
   async function onSubmit(data: Group | CreateGroup) {
-    // mutationFn(data);
-    console.log(data);
+    mutationFn(data);
   }
 
   return (
@@ -54,7 +53,7 @@ export default function ProductForm({
           <CustomFormField
             fieldType={FormFieldTypes.input}
             control={form.control}
-            name="groupName"
+            name="name"
             label="Nome do Grupo"
             placeholder="Ex: Espetinhos, Bebidas, Sobremesas"
           />

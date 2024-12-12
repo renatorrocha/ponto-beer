@@ -3,12 +3,13 @@
 import { Accordion } from "~/components/ui/accordion";
 import { ScrollArea } from "~/components/ui/scroll-area";
 import { HeroBanner } from "./_components/hero-banner";
-import { menuData } from "~/data/menu-data";
 import { MenuGroup } from "./_components/menu-group";
 import { useRef } from "react";
 import { MenuNavigation } from "./_components/menu-navigation";
+import { api } from "~/trpc/react";
 
 export default function MenuPage() {
+  const { data, isLoading } = api.group.getAll.useQuery();
   const accordionRef = useRef<HTMLDivElement>(null);
 
   const scrollToSection = (index: number) => {
@@ -16,11 +17,18 @@ export default function MenuPage() {
       `[data-accordion-item="${index}"]`,
     );
     if (element) {
-      const yOffset = -100; // Offset to account for sticky header
+      const yOffset = -100;
       const y = element.getBoundingClientRect().top + window.scrollY + yOffset;
       window.scrollTo({ top: y, behavior: "smooth" });
     }
   };
+
+  console.log(data);
+
+  if (!data) {
+    return;
+  }
+
   return (
     <div className="flex-1">
       <HeroBanner
@@ -28,12 +36,12 @@ export default function MenuPage() {
         backgroundImage="https://images.unsplash.com/photo-1620219365994-f443a86ea626?q=80&w=1742&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
       />
 
-      <MenuNavigation groups={menuData} onNavigate={scrollToSection} />
+      <MenuNavigation groups={data} onNavigate={scrollToSection} />
 
       <ScrollArea className="h-full">
         <div ref={accordionRef}>
-          <Accordion type="multiple" className="w-full px-8" >
-            {menuData.map((group, index) => (
+          <Accordion type="multiple" className="w-full px-8">
+            {data.map((group, index) => (
               <div key={index} data-accordion-item={index}>
                 <MenuGroup group={group} index={index} />
               </div>
