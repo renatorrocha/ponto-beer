@@ -15,7 +15,7 @@ export function Providers({
         <TooltipProvider>
           {children}
 
-          <Toaster richColors />
+          <Toaster richColors theme="light" />
         </TooltipProvider>
       </SidebarProvider>
     </TRPCReactProvider>
