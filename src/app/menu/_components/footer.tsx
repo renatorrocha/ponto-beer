@@ -30,7 +30,7 @@ export default function Footer() {
           <div className="text-sm text-gray-500 dark:text-gray-400">
             Feito com ❤️ por{" "}
             <Link
-              href="https://github.com/renatorrocha"
+              href="https://renatodev.com/pt"
               target="_blank"
               rel="noopener noreferrer"
               className="cursor-pointer font-medium transition-colors duration-200 hover:underline"
