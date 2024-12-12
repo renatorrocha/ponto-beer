@@ -1,7 +1,7 @@
-import type dynamicIconImports from "lucide-react/dynamicIconImports";
+import type { LucideIcon } from "lucide-react";
 
-declare type SidebarLink = {
+export interface SidebarLink {
   href: string;
   label: string;
-  iconName: keyof typeof dynamicIconImports;
-};
+  icon: LucideIcon;
+}

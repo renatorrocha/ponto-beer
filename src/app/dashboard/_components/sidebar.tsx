@@ -1,8 +1,7 @@
 "use client";
 
-import { CakeSlice, ChevronUp, User2 } from "lucide-react";
+import { ChefHat, ChevronUp, User2 } from "lucide-react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,7 +9,7 @@ import {
   DropdownMenuTrigger,
 } from "~/components/ui/dropdown-menu";
 import {
-  Sidebar as UiSidebar,
+  Sidebar,
   SidebarContent,
   SidebarFooter,
   SidebarGroup,
@@ -20,28 +19,26 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "~/components/ui/sidebar";
-import { DASHBOARD_SIDEBAR_LINKS } from "~/lib/constants";
 import SidebarLink from "./sidebar-link";
+import { DASHBOARD_SIDEBAR_LINKS } from "~/lib/constants";
 
-export function Sidebar() {
-  const router = useRouter();
-
+export function AppSidebar() {
   return (
-    <UiSidebar variant="floating" collapsible="icon">
+    <Sidebar variant="floating" collapsible="icon">
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton
               asChild
               size="lg"
-              className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground transition-all duration-300"
+              className="transition-all duration-300 data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
               <Link href="/dashboard">
-                <div className="text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg bg-primary">
-                  <CakeSlice className="h-4 w-4 transition-all group-hover:scale-110" />
+                <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-primary text-sidebar-primary-foreground">
+                  <ChefHat className="h-4 w-4 transition-all group-hover:scale-110" />
                 </div>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-semibold">Palhas do DG</span>
+                  <span className="truncate font-semibold">Ponto Beer</span>
                 </div>
               </Link>
             </SidebarMenuButton>
@@ -57,7 +54,7 @@ export function Sidebar() {
                 <SidebarLink
                   key={item.label}
                   href={item.href}
-                  iconName={item.iconName}
+                  icon={item.icon}
                   label={item.label}
                 />
               ))}
@@ -93,6 +90,19 @@ export function Sidebar() {
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarFooter>
-    </UiSidebar>
+    </Sidebar>
+
+    // <Sidebar>
+    //   <SidebarContent>
+    //     <SidebarGroup>
+    //       <SidebarGroupLabel>Application</SidebarGroupLabel>
+    //       <SidebarGroupContent>
+    //         <SidebarMenu>
+
+    //         </SidebarMenu>
+    //       </SidebarGroupContent>
+    //     </SidebarGroup>
+    //   </SidebarContent>
+    // </Sidebar>
   );
 }

@@ -1,30 +1,29 @@
 "use client";
 
 import Link from "next/link";
-import { cn } from "~/lib/utils";
 import { usePathname } from "next/navigation";
-import type { SidebarLink } from "~/lib/types";
 import { useMemo } from "react";
 import { SidebarMenuButton, SidebarMenuItem } from "~/components/ui/sidebar";
-import Icon from "~/components/ui/icon";
+import type { SidebarLink } from "~/lib/types";
+import { cn } from "~/lib/utils";
 
-export default function SidebarLink({ href, label, iconName }: SidebarLink) {
+export default function SidebarLink({ href, label, icon: Icon }: SidebarLink) {
   const pathname = usePathname();
   const isActive = useMemo(() => pathname.startsWith(href), [pathname, href]);
 
   return (
-    <SidebarMenuItem key={label}>
+    <SidebarMenuItem>
       <SidebarMenuButton
         asChild
         tooltip={label}
         className={cn(
-          "hover:bg-sidebar-accent/80 flex items-center gap-4 rounded-lg px-2.5 py-4 text-muted-foreground transition-all duration-300 hover:text-foreground",
-          isActive && "bg-sidebar-accent pointer-events-none text-primary",
+          "flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all duration-300 hover:bg-accent hover:text-accent-foreground",
+          isActive && "bg-accent text-accent-foreground",
         )}
       >
-        <Link href={href}>
-          <Icon name={iconName} className="size-5" />
-          <span>{label}</span>
+        <Link href={href} className="flex items-center gap-3">
+          <Icon className="h-4 w-4" />
+          <span className="truncate">{label}</span>
         </Link>
       </SidebarMenuButton>
     </SidebarMenuItem>
