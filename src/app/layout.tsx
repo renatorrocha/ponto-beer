@@ -21,7 +21,7 @@ export default function RootLayout({
     >
       <body>
         <Providers>
-          <div className="flex min-h-[100vh] w-full bg-muted/20">
+          <div className="flex min-h-screen w-full flex-col bg-muted/20">
             {children}
           </div>
         </Providers>

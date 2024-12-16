@@ -14,7 +14,7 @@ interface MenuItemCardProps {
 
 export function MenuItemCard({ item }: MenuItemCardProps) {
   return (
-    <Card className="flex h-36 flex-row overflow-hidden shadow-md">
+    <Card className="flex h-40 flex-row overflow-hidden shadow-md">
       <CardHeader className="flex flex-1 flex-col justify-between">
         <div>
           <CardTitle>{item.name}</CardTitle>
