@@ -7,6 +7,7 @@ import { MenuGroup } from "./_components/menu-group";
 import { useRef } from "react";
 import { MenuNavigation } from "./_components/menu-navigation";
 import { api } from "~/trpc/react";
+import { MenuSkeleton } from "./_components/menu-skeleton";
 
 export default function MenuPage() {
   const { data, isLoading } = api.group.getAll.useQuery();
@@ -23,10 +24,16 @@ export default function MenuPage() {
     }
   };
 
-  console.log(data);
+  if (isLoading) {
+    return <MenuSkeleton />;
+  }
 
   if (!data) {
-    return;
+    return (
+      <div className="p-8 text-center text-muted-foreground">
+        Sem Items Catalogados.
+      </div>
+    );
   }
 
   return (
@@ -40,9 +47,9 @@ export default function MenuPage() {
           <Accordion
             type="multiple"
             className="w-full px-8"
-            defaultValue={menuData.map((_, index) => `item-${index}`)}
+            defaultValue={data.map((_, index) => `item-${index}`)}
           >
-            {menuData.map((group, index) => (
+            {data.map((group, index) => (
               <div key={index} data-accordion-item={index}>
                 <MenuGroup group={group} index={index} />
               </div>
