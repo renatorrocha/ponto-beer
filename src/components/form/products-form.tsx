@@ -37,6 +37,8 @@ export default function ProductForm({
     },
   });
 
+  console.log(form.formState.errors);
+
   const { fields, append, remove } = useFieldArray({
     control: form.control,
     name: "items",

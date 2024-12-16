@@ -1,70 +1,17 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { type ColumnDef } from "@tanstack/react-table";
 import { DataTableColumnHeader } from "../../../components/table/column-header";
-import { DataTableRowActions } from "../../../components/table/row-actions";
-import { ChevronRight, ChevronDown } from "lucide-react";
-import { Button } from "~/components/ui/button";
+import type { Item } from "~/lib/validations";
+import { DataTableRowActions } from "./row-actions";
 
-type Item = {
-  name: string;
-  description: string;
-  price: number;
-  image: string;
-  id: string;
-  groupId: string;
-};
-
-type Group = {
-  name: string;
-  id: string;
-  items: Item[];
-};
-
-export const columns: ColumnDef<Group>[] = [
-  {
-    id: "expander",
-    header: () => null,
-    cell: ({ row }) => {
-      return row.getCanExpand() ? (
-        <Button
-          variant="ghost"
-          onClick={row.getToggleExpandedHandler()}
-          className="h-6 w-6 p-0"
-        >
-          {row.getIsExpanded() ? (
-            <ChevronDown className="h-4 w-4" />
-          ) : (
-            <ChevronRight className="h-4 w-4" />
-          )}
-        </Button>
-      ) : null;
-    },
-  },
-  {
-    accessorKey: "name",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Nome do Grupo" />
-    ),
-    cell: ({ row }) => {
-      return row.original.name;
-    },
-  },
-  {
-    accessorKey: "items",
-    header: "Itens",
-    cell: ({ row }) => {
-      return row.original.items.length;
-    },
-  },
-];
-
-export const subColumns: ColumnDef<Item>[] = [
+export const columns: ColumnDef<Item>[] = [
   {
     accessorKey: "image",
     header: "Imagem",
     cell: ({ row }) => (
-      <div className="relative h-12 w-12 overflow-hidden rounded-md">
+      <div className="relative size-16 overflow-hidden rounded-md">
         <img
           src={row.getValue("image")}
           alt={row.getValue("name")}
@@ -100,6 +47,7 @@ export const subColumns: ColumnDef<Item>[] = [
       return `R$ ${price.toFixed(2)}`;
     },
   },
+
   {
     id: "actions",
     cell: ({ row }) => <DataTableRowActions row={row} />,

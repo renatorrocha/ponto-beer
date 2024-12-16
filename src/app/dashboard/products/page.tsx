@@ -46,7 +46,10 @@ export default function ProductsPage() {
             </span>
           </div>
         ) : (
-          <DataTable columns={columns} data={data} />
+          <DataTable
+            columns={columns}
+            data={data?.flatMap((group) => group.items)}
+          />
         )}
       </PageHeaderCard>
     </div>
