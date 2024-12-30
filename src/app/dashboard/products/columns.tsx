@@ -3,10 +3,10 @@
 
 import { type ColumnDef } from "@tanstack/react-table";
 import { DataTableColumnHeader } from "../../../components/table/column-header";
-import type { Item } from "~/lib/validations";
+import type { Product } from "~/lib/validations";
 import { DataTableRowActions } from "./row-actions";
 
-export const columns: ColumnDef<Item>[] = [
+export const columns: ColumnDef<Product>[] = [
   {
     accessorKey: "image",
     header: "Imagem",
