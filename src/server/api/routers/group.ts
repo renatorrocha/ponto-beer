@@ -25,6 +25,7 @@ export const GroupRouter = createTRPCRouter({
 
       return newGroup;
     }),
+    
   getAll: publicProcedure.query(async ({ ctx }) => {
     const groups = await ctx.db.group.findMany({
       include: { items: true },

@@ -4,7 +4,7 @@ import type { Table } from "@tanstack/react-table";
 import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
 import { DataTableViewOptions } from "./view-options";
-import { Cross } from "lucide-react";
+import { Paintbrush } from "lucide-react";
 
 interface DataTableToolbarProps<TData> {
   table: Table<TData>;
@@ -33,7 +33,7 @@ export function DataTableToolbar<TData>({
             className="h-8 px-2 lg:px-3"
           >
             Limpar
-            <Cross className="ml-2 h-4 w-4" />
+            <Paintbrush className="ml-2 h-4 w-4" />
           </Button>
         )}
       </div>

@@ -21,11 +21,11 @@ export function CreateProductDialog({ trigger }: CreateProductDialogProps) {
   const [open, setOpen] = useState(false);
   const utils = api.useUtils();
 
-  const { mutate, isPending } = api.group.create.useMutation({
+  const { mutate, isPending } = api.product.create.useMutation({
     onSuccess: async () => {
       setOpen(false);
       toast.success("Produto Criado !");
-      await utils.group.getAll.invalidate();
+      await utils.product.getAll.invalidate();
     },
   });
 
@@ -34,7 +34,7 @@ export function CreateProductDialog({ trigger }: CreateProductDialogProps) {
       <DialogTrigger asChild>{trigger}</DialogTrigger>
       <DialogContent className="sm:max-w-[625px]">
         <DialogHeader>
-          <DialogTitle>Criar novo usuário</DialogTitle>
+          <DialogTitle>Criar novo Produto</DialogTitle>
         </DialogHeader>
         <ProductForm
           mutationFn={(data) => mutate(data)}

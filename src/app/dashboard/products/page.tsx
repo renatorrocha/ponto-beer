@@ -10,7 +10,7 @@ import { DataTable } from "../../../components/table/data-table";
 import { columns } from "./columns";
 
 export default function ProductsPage() {
-  const { data, isLoading } = api.group.getAll.useQuery();
+  const { data, isLoading } = api.product.getAll.useQuery();
   const addProductButton = (
     <CreateProductDialog
       trigger={
@@ -46,10 +46,7 @@ export default function ProductsPage() {
             </span>
           </div>
         ) : (
-          <DataTable
-            columns={columns}
-            data={data?.flatMap((group) => group.items)}
-          />
+          <DataTable columns={columns} data={data} />
         )}
       </PageHeaderCard>
     </div>
