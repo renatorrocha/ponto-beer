@@ -5,4 +5,5 @@ export const Paths = {
   Dashboard: "/dashboard",
   Products: "/dashboard/products",
   Users: "/dashboard/users",
+  Groups: "/dashboard/groups",
 };

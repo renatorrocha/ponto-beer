@@ -1,10 +1,10 @@
 import { z } from "zod";
-import { createProductSchema } from "./product.schema";
+import { productSchema } from "./product.schema";
 
 export const createGroupSchema = z.object({
   name: z.string().min(2, "O nome do grupo deve ter pelo menos 2 caracteres."),
-  items: z
-    .array(createProductSchema)
+  products: z
+    .array(productSchema.pick({ id: true }))
     .min(1, "Adicione pelo menos um item ao grupo."),
 });
 

@@ -12,12 +12,9 @@ export const GroupRouter = createTRPCRouter({
       const newGroup = await ctx.db.group.create({
         data: {
           name: input.name,
-          items: {
-            create: input.items.map((item) => ({
-              name: item.name,
-              description: item.description,
-              price: item.price,
-              image: item.image,
+          products: {
+            connect: input.products.map((product) => ({
+              id: product.id,
             })),
           },
         },
@@ -25,10 +22,10 @@ export const GroupRouter = createTRPCRouter({
 
       return newGroup;
     }),
-    
+
   getAll: publicProcedure.query(async ({ ctx }) => {
     const groups = await ctx.db.group.findMany({
-      include: { items: true },
+      include: { products: true },
     });
 
     return groups;
