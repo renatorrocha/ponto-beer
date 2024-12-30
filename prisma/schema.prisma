@@ -32,17 +32,17 @@ model MagicLinkToken {
 }
 
 model Group {
-    id    String @id @default(uuid())
-    name  String @unique
-    items Item[]
+    id       String    @id @default(uuid())
+    name     String    @unique
+    products Product[]
 }
 
-model Item {
-    id          String @id @default(uuid())
+model Product {
+    id          String  @id @default(uuid())
     name        String
     description String
     price       Float
     image       String
-    groupId     String
-    group       Group  @relation(fields: [groupId], references: [id])
+    groupId     String?
+    group       Group?  @relation(fields: [groupId], references: [id])
 }
