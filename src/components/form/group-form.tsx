@@ -92,6 +92,11 @@ export default function GroupForm({
                 ))}
               </div>
             </ScrollArea>
+            {form.formState.errors.products && (
+              <p className="mt-2 text-sm text-destructive">
+                Selecione pelo menos um produto
+              </p>
+            )}
           </div>
         </div>
 

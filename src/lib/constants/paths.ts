@@ -6,4 +6,5 @@ export const Paths = {
   Products: "/dashboard/products",
   Users: "/dashboard/users",
   Groups: "/dashboard/groups",
+  GroupsEdit: (id: string) => `/dashboard/groups/${id}/edit`,
 };

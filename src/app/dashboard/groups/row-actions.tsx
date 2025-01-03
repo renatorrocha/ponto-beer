@@ -2,6 +2,7 @@
 
 import { type Row } from "@tanstack/react-table";
 import { Ellipsis } from "lucide-react";
+import Link from "next/link";
 import { Button } from "~/components/ui/button";
 import {
   DropdownMenu,
@@ -9,12 +10,13 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "~/components/ui/dropdown-menu";
+import { Paths } from "~/lib/constants";
 
-interface DataTableRowActionsProps<TData> {
+interface DataTableRowActionsProps<TData extends { id: string }> {
   row: Row<TData>;
 }
 
-export function DataTableRowActions<TData>({
+export function DataTableRowActions<TData extends { id: string }>({
   row,
 }: DataTableRowActionsProps<TData>) {
   return (
@@ -29,7 +31,9 @@ export function DataTableRowActions<TData>({
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-[160px]">
-        <DropdownMenuItem>Editar</DropdownMenuItem>
+        <DropdownMenuItem asChild>
+          <Link href={Paths.GroupsEdit(row.original.id)}>Editar</Link>
+        </DropdownMenuItem>
         <DropdownMenuItem className="text-destructive">
           Excluir
         </DropdownMenuItem>
