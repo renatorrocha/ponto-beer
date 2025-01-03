@@ -9,21 +9,29 @@ import { DataTableRowActions } from "./row-actions";
 export const columns: ColumnDef<Product>[] = [
   {
     accessorKey: "image",
-    header: "Imagem",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Imagem" />
+    ),
     cell: ({ row }) => (
-      <div className="relative size-16 overflow-hidden rounded-md">
-        <img
-          src={row.getValue("image")}
-          alt={row.getValue("name")}
-          className="object-cover"
-        />
+      <div className="flex justify-center">
+        <div className="relative flex size-16 justify-center overflow-hidden rounded-md border">
+          <img
+            src={row.getValue("image")}
+            alt={row.getValue("name")}
+            className="object-cover"
+          />
+        </div>
       </div>
     ),
+    enableSorting: false,
   },
   {
     accessorKey: "name",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Nome" />
+    ),
+    cell: ({ row }) => (
+      <div className="min-w-[150px]">{row.getValue("name")}</div>
     ),
   },
   {
@@ -40,14 +48,17 @@ export const columns: ColumnDef<Product>[] = [
   {
     accessorKey: "price",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Preço" />
+      <DataTableColumnHeader
+        column={column}
+        className="flex justify-center"
+        title="Preço"
+      />
     ),
     cell: ({ row }) => {
       const price = parseFloat(row.getValue("price"));
-      return `R$ ${price.toFixed(2)}`;
+      return <div className="flex max-w-[300px]">R$ {price.toFixed(2)}</div>;
     },
   },
-
   {
     id: "actions",
     cell: ({ row }) => <DataTableRowActions row={row} />,

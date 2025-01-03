@@ -1,6 +1,6 @@
 "use client";
 
-import { Package, PlusCircle } from "lucide-react";
+import { Folder, PlusCircle } from "lucide-react";
 import React from "react";
 import { PageHeaderCard } from "../_components/page-header-card";
 import { Button } from "~/components/ui/button";
@@ -35,7 +35,7 @@ export default function GroupsPage() {
   return (
     <div className="flex-1">
       <PageHeaderCard
-        icon={Package}
+        icon={Folder}
         title="Grupos"
         description="Gerencie seus grupos."
         action={addProductButton}
