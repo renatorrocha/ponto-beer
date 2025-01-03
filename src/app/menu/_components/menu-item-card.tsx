@@ -5,11 +5,11 @@ import {
   CardHeader,
   CardTitle,
 } from "~/components/ui/card";
-import type { MenuItem } from "~/data/menu-data";
 import { MenuItemImage } from "./menu-item-image";
+import type { Product } from "~/lib/validations";
 
 interface MenuItemCardProps {
-  item: MenuItem;
+  item: Product;
 }
 
 export function MenuItemCard({ item }: MenuItemCardProps) {

@@ -4,10 +4,10 @@ import {
   AccordionTrigger,
 } from "~/components/ui/accordion";
 import { MenuItemCard } from "./menu-item-card";
-import type { Group } from "~/lib/validations";
+import type { Group, Product } from "~/lib/validations";
 
 interface MenuGroupProps {
-  group: Group;
+  group: Group & { products: Product[] };
   index: number;
 }
 
@@ -19,8 +19,8 @@ export function MenuGroup({ group, index }: MenuGroupProps) {
       </AccordionTrigger>
       <AccordionContent>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {group.items.map((item, itemIndex) => (
-            <MenuItemCard key={itemIndex} item={item} />
+          {group.products.map((product: Product) => (
+            <MenuItemCard key={product.id} item={product} />
           ))}
         </div>
       </AccordionContent>
