@@ -80,7 +80,7 @@ export function DataTableRowActions<TData extends Group>({
       </DropdownMenu>
 
       <Dialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
-        <DialogContent>
+        <DialogContent className="sm:max-w-[625px]">
           <DialogHeader>
             <DialogTitle>Excluir grupo {row.original.name} ?</DialogTitle>
           </DialogHeader>
@@ -110,7 +110,7 @@ export function DataTableRowActions<TData extends Group>({
       </Dialog>
 
       <Dialog open={editDialogOpen} onOpenChange={setEditDialogOpen}>
-        <DialogContent>
+        <DialogContent className="sm:max-w-[625px]">
           <DialogHeader>
             <DialogTitle>
               Editar grupo &quot;{row.original.name}&quot;

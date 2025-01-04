@@ -27,10 +27,10 @@ export default function ProductForm({
   const form = useForm<Product | CreateProduct>({
     resolver: zodResolver(isEditing ? productSchema : createProductSchema),
     defaultValues: {
-      name: "",
-      description: "",
-      price: 0,
-      image: "",
+      name: product?.name ?? "",
+      description: product?.description ?? "",
+      price: product?.price ?? 0,
+      image: product?.image ?? "",
       ...(isEditing && { id: product?.id }),
     },
   });
