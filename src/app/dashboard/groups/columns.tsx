@@ -15,40 +15,43 @@ export const columns: ColumnDef<Group>[] = [
     ),
     cell: ({ row }) => {
       return (
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center">
           <span className="font-medium">{row.getValue("name")}</span>
         </div>
       );
     },
+    size: 300, // Set a fixed width for the name column
   },
   {
     accessorKey: "products",
     header: ({ column }) => (
       <DataTableColumnHeader
         column={column}
-        className="flex justify-start"
         title="Produtos"
+        className="text-center"
       />
     ),
     cell: ({ row }) => {
       const products = row.original.products;
       return (
-        <div className="flex items-center justify-end">
-          <Badge variant="secondary" className="flex items-center space-x-1">
-            <Package className="h-3 w-3" />
+        <div className="flex justify-center">
+          <Badge variant="secondary" className="flex items-center gap-1.5">
+            <Package className="h-3.5 w-3.5" />
             <span>{products.length}</span>
           </Badge>
         </div>
       );
     },
+    size: 150, // Set a fixed width for the products column
   },
-
   {
     id: "actions",
+    header: () => <div className="text-right">Ações</div>,
     cell: ({ row }) => (
-      <div className="mr-12 flex justify-end">
+      <div className="flex justify-end pr-4">
         <DataTableRowActions row={row} />
       </div>
     ),
+    size: 100, // Set a fixed width for the actions column
   },
 ];

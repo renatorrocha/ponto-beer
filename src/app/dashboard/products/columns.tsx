@@ -10,20 +10,25 @@ export const columns: ColumnDef<Product>[] = [
   {
     accessorKey: "image",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Imagem" />
+      <DataTableColumnHeader
+        column={column}
+        title="Imagem"
+        className="text-center"
+      />
     ),
     cell: ({ row }) => (
-      <div className="flex justify-center">
-        <div className="relative flex size-16 justify-center overflow-hidden rounded-md border">
+      <div className="flex justify-center py-2">
+        <div className="relative flex size-16 shrink-0 items-center justify-center overflow-hidden rounded-md border bg-muted">
           <img
             src={row.getValue("image")}
             alt={row.getValue("name")}
-            className="object-cover"
+            className="h-full w-full object-cover"
           />
         </div>
       </div>
     ),
     enableSorting: false,
+    size: 100,
   },
   {
     accessorKey: "name",
@@ -31,8 +36,11 @@ export const columns: ColumnDef<Product>[] = [
       <DataTableColumnHeader column={column} title="Nome" />
     ),
     cell: ({ row }) => (
-      <div className="min-w-[150px]">{row.getValue("name")}</div>
+      <div className="flex min-w-[200px] items-center">
+        <span className="font-medium">{row.getValue("name")}</span>
+      </div>
     ),
+    size: 250,
   },
   {
     accessorKey: "description",
@@ -40,27 +48,42 @@ export const columns: ColumnDef<Product>[] = [
       <DataTableColumnHeader column={column} title="Descrição" />
     ),
     cell: ({ row }) => (
-      <div className="max-w-[300px] truncate">
-        {row.getValue("description")}
+      <div className="max-w-[400px]">
+        <p className="truncate text-sm text-muted-foreground">
+          {row.getValue("description")}
+        </p>
       </div>
     ),
+    size: 400,
   },
   {
     accessorKey: "price",
     header: ({ column }) => (
       <DataTableColumnHeader
         column={column}
-        className="flex justify-center"
         title="Preço"
+        className="text-right"
       />
     ),
     cell: ({ row }) => {
       const price = parseFloat(row.getValue("price"));
-      return <div className="flex max-w-[300px]">R$ {price.toFixed(2)}</div>;
+      const formatted = new Intl.NumberFormat("pt-BR", {
+        style: "currency",
+        currency: "BRL",
+      }).format(price);
+
+      return <div className="text-right font-medium">{formatted}</div>;
     },
+    size: 150,
   },
   {
     id: "actions",
-    cell: ({ row }) => <DataTableRowActions row={row} />,
+    header: () => <div className="text-right">Ações</div>,
+    cell: ({ row }) => (
+      <div className="flex justify-end pr-4">
+        <DataTableRowActions row={row} />
+      </div>
+    ),
+    size: 100,
   },
 ];
